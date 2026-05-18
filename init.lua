@@ -508,11 +508,7 @@ do
   vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
   vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
   vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-  vim.keymap.set('n', '<leader>sF',
-    function ()
-      builtin.find_files({ hidden = true, no_ignore = false})
-    end,
-    { desc = '[S]earch [F]iles' })
+  vim.keymap.set('n', '<leader>sF', function() builtin.find_files { hidden = true, no_ignore = false } end, { desc = '[S]earch [F]iles' })
   vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
   vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
   vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -773,20 +769,6 @@ do
     vim.lsp.config(name, server)
     vim.lsp.enable(name)
   end
-
-  -- C# Roslyn LSP
-  vim.pack.add{ gh 'seblj/roslyn.nvim' }
-  require('roslyn').setup({
-    extensions = {
-      razor = {
-        enabled = false,
-        config = {},
-      },
-    },
-  })
-
-  -- Enable on-type formatting for all lsp
-  vim.lsp.on_type_formatting.enable()
 end
 
 -- ============================================================
@@ -988,14 +970,14 @@ do
   -- require 'kickstart.plugins.debug'
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
-     require 'kickstart.plugins.autopairs'
-     require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.autopairs'
+  require 'kickstart.plugins.neo-tree'
   -- require 'kickstart.plugins.gitsigns' -- adds gitsigns recommended keymaps
 
   -- NOTE: You can add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- require 'custom.plugins'
+  require 'custom.plugins'
 end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
